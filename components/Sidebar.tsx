@@ -2,7 +2,7 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-21 11:38:27
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-07-21 20:02:04
+ * @LastEditTime: 2023-07-23 22:18:03
  * @FilePath: \ai-saas\components\Sidebar.tsx
  * @Description:
  */
@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { Montserrat } from "next/font/google";
 import { usePathname } from "next/navigation";
+import { FreeCounter } from "./FreeCounter";
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
 
 const routes = [
@@ -68,8 +69,12 @@ const routes = [
 	},
 ];
 
-const Sidebar = () => {
+interface SidebarProps {
+	apiLimitCount: number;
+}
+const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
 	const pathname = usePathname();
+
 	return (
 		<div className="space-y-4 py-4 flex flex-col h-full text-white bg-[#241731]">
 			<div className="px-3 py-2 flex-1">
@@ -101,6 +106,7 @@ const Sidebar = () => {
 					))}
 				</div>
 			</div>
+			<FreeCounter apiLimitCount={apiLimitCount} />
 		</div>
 	);
 };
