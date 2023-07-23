@@ -2,7 +2,7 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-22 13:56:04
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-07-22 14:31:27
+ * @LastEditTime: 2023-07-23 21:54:13
  * @FilePath: \ai-saas\app\api\code\route.ts
  * @Description:
  */
@@ -10,6 +10,7 @@ import axios from "axios";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
+import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
 import { HttpProxyAgent } from "http-proxy-agent"; // 引入http-proxy-agent库
 
 const proxyHost = "127.0.0.1"; // 替换为你的VPN代理地址
@@ -44,6 +45,11 @@ export async function POST(req: Request) {
 			return new NextResponse("Messages are required", { status: 400 });
 		}
 
+		const freeTrial = await checkApiLimit();
+		if (freeTrial) {
+			return new NextResponse("Free trial has expired.", { status: 403 });
+		}
+
 		// 创建一个使用代理的axios实例
 		// const axiosInstance = axios.create({
 		// 	baseURL: "https://api.openai.com/v1",
@@ -62,6 +68,8 @@ export async function POST(req: Request) {
 			model: "gpt-3.5-turbo",
 			messages: [instructionMessage, ...messages],
 		});
+		await increaseApiLimit();
+
 		return NextResponse.json(response.data.choices[0].message);
 	} catch (error) {
 		console.log("[CODE_ERROR]", error);

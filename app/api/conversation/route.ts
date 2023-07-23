@@ -2,13 +2,14 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-22 00:39:25
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-07-22 11:56:04
+ * @LastEditTime: 2023-07-23 21:56:18
  * @FilePath: \ai-saas\app\api\conversation\route.ts
  * @Description:
  */
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { Configuration, OpenAIApi } from "openai";
+import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
 
 const configuration = new Configuration({
 	apiKey: process.env.OPENAI_API_KEY,
@@ -32,12 +33,18 @@ export async function POST(req: Request) {
 			return new NextResponse("Messages are required", { status: 400 });
 		}
 
+		const freeTrial = await checkApiLimit();
+		if (freeTrial) {
+			return new NextResponse("Free trial has expired.", { status: 403 });
+		}
+
 		const response = await openai.createChatCompletion({
 			model: "gpt-3.5-turbo",
 			messages,
 		});
-		return NextResponse.json(response.data.choices[0].message);
+		await increaseApiLimit();
 
+		return NextResponse.json(response.data.choices[0].message);
 	} catch (error) {
 		console.log("[CONVERSATION_ERROR]", error);
 		return new NextResponse("Internal error", { status: 500 });
