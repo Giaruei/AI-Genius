@@ -2,7 +2,7 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-21 19:51:00
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-07-23 10:41:35
+ * @LastEditTime: 2023-07-23 23:37:44
  * @FilePath: \ai-saas\app\(dashboard)\(routes)\code\page.tsx
  * @Description:
  */
@@ -24,12 +24,14 @@ import { ChatCompletionRequestMessage } from "openai";
 import { Empty } from "@/components/Empty";
 import { Loader } from "@/components/Loader";
 import { cn } from "@/lib/utils";
-import { UserAvater } from "@/components/User-avater";
+import { UserAvater } from "@/components/UserAvater";
 import { BotAvater } from "@/components/Bot-avater";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const CodePage = () => {
 	const router = useRouter();
 	const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
+	const proModal = useProModal();
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -55,6 +57,9 @@ const CodePage = () => {
 			form.reset();
 		} catch (error: any) {
 			// todo: open pro modal
+			if (error?.response?.status === 403) {
+				proModal.onOpen();
+			}
 			console.log(error);
 		} finally {
 			router.refresh();
