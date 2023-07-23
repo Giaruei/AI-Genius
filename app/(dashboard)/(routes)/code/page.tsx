@@ -2,7 +2,7 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-21 19:51:00
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-07-22 13:55:34
+ * @LastEditTime: 2023-07-23 10:41:35
  * @FilePath: \ai-saas\app\(dashboard)\(routes)\code\page.tsx
  * @Description:
  */
@@ -10,6 +10,7 @@
 import * as z from "zod";
 import axios from "axios";
 import Heading from "@/components/Heading";
+import ReactMarkdown from "react-markdown";
 import { Code } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { formSchema } from "./constants";
@@ -121,7 +122,21 @@ const CodePage = () => {
 								)}
 							>
 								{message.role === "user" ? <UserAvater /> : <BotAvater />}
-								<p className="text-sm">{message.content}</p>
+								<ReactMarkdown
+									components={{
+										pre: ({ node, ...props }) => (
+											<div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
+												<pre {...props} />
+											</div>
+										),
+										code: ({ node, ...props }) => (
+											<code className="bg-black/10 p-1 rounded-lg" />
+										),
+									}}
+									className="text-sm overflow-hidden leading-7"
+								>
+									{message.content || ""}
+								</ReactMarkdown>
 							</div>
 						))}
 					</div>
