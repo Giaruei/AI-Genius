@@ -2,7 +2,7 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-22 13:56:04
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-07-23 21:54:13
+ * @LastEditTime: 2023-07-25 10:33:57
  * @FilePath: \ai-saas\app\api\code\route.ts
  * @Description:
  */
@@ -12,6 +12,7 @@ import { NextResponse } from "next/server";
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
 import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
 import { HttpProxyAgent } from "http-proxy-agent"; // 引入http-proxy-agent库
+import { checkSubscription } from "@/lib/subscription";
 
 const proxyHost = "127.0.0.1"; // 替换为你的VPN代理地址
 const proxyPort = 7890; // 替换为你的VPN代理端口
@@ -46,7 +47,9 @@ export async function POST(req: Request) {
 		}
 
 		const freeTrial = await checkApiLimit();
-		if (freeTrial) {
+		const isPro = await checkSubscription();
+
+		if (!freeTrial && !isPro) {
 			return new NextResponse("Free trial has expired.", { status: 403 });
 		}
 
@@ -68,7 +71,10 @@ export async function POST(req: Request) {
 			model: "gpt-3.5-turbo",
 			messages: [instructionMessage, ...messages],
 		});
-		await increaseApiLimit();
+
+		if (!isPro) {
+			await increaseApiLimit();
+		}
 
 		return NextResponse.json(response.data.choices[0].message);
 	} catch (error) {

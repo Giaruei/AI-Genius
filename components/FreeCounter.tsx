@@ -3,7 +3,7 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-23 22:07:48
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-07-23 23:31:45
+ * @LastEditTime: 2023-07-25 10:21:14
  * @FilePath: \ai-saas\components\FreeCounter.tsx
  * @Description:
  */
@@ -17,8 +17,12 @@ import { useProModal } from "@/hooks/use-pro-modal";
 
 interface FreeCounterProps {
 	apiLimitCount: number;
+	isPro: boolean;
 }
-export const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
+export const FreeCounter = ({
+	apiLimitCount = 0,
+	isPro = false,
+}: FreeCounterProps) => {
 	const proModal = useProModal();
 
 	const [mounted, setMounted] = useState(false);
@@ -26,6 +30,8 @@ export const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
 		setMounted(true);
 	}, []);
 	if (!mounted) return null;
+
+	if (isPro) return null;
 
 	return (
 		<div className="px-3">

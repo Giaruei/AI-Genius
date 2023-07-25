@@ -2,8 +2,8 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-21 12:21:34
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-07-21 19:49:21
- * @FilePath: \ai-saas\components\mobile-sidebar.tsx
+ * @LastEditTime: 2023-07-25 10:25:56
+ * @FilePath: \ai-saas\components\MobileSidebar.tsx
  * @Description:
  */
 "use client";
@@ -16,9 +16,13 @@ import { useEffect, useState } from "react";
 
 interface MobileSidebarProps {
 	apiLimitCount: number;
+	isPro: boolean;
 }
 
-const MoblieSidebar = ({ apiLimitCount }: MobileSidebarProps) => {
+const MoblieSidebar = ({
+	apiLimitCount = 0,
+	isPro = false,
+}: MobileSidebarProps) => {
 	const [isMounted, setIsMounted] = useState(false);
 	useEffect(() => {
 		setIsMounted(true);
@@ -33,7 +37,7 @@ const MoblieSidebar = ({ apiLimitCount }: MobileSidebarProps) => {
 				</Button>
 			</SheetTrigger>
 			<SheetContent side="left" className="p-0">
-				<Sidebar apiLimitCount={apiLimitCount} />
+				<Sidebar apiLimitCount={apiLimitCount} isPro={isPro} />
 			</SheetContent>
 		</Sheet>
 	);

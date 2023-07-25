@@ -1,3 +1,11 @@
+/*
+ * @Author: 前端天才蔡嘉睿
+ * @Date: 2023-07-21 10:08:15
+ * @LastEditors: Giaruei 247658354@qq.com
+ * @LastEditTime: 2023-07-25 11:22:17
+ * @FilePath: \ai-saas\components\ui\button.tsx
+ * @Description:
+ */
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -18,7 +26,8 @@ const buttonVariants = cva(
 					"bg-secondary text-secondary-foreground hover:bg-secondary/80",
 				ghost: "hover:bg-accent hover:text-accent-foreground",
 				link: "text-primary underline-offset-4 hover:underline",
-				premium: "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-0",
+				premium:
+					"bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-0",
 			},
 			size: {
 				default: "h-10 px-4 py-2",

@@ -2,7 +2,7 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-21 19:51:00
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-07-23 23:37:44
+ * @LastEditTime: 2023-07-25 10:56:37
  * @FilePath: \ai-saas\app\(dashboard)\(routes)\code\page.tsx
  * @Description:
  */
@@ -27,6 +27,7 @@ import { cn } from "@/lib/utils";
 import { UserAvater } from "@/components/UserAvater";
 import { BotAvater } from "@/components/Bot-avater";
 import { useProModal } from "@/hooks/use-pro-modal";
+import toast from "react-hot-toast";
 
 const CodePage = () => {
 	const router = useRouter();
@@ -59,6 +60,8 @@ const CodePage = () => {
 			// todo: open pro modal
 			if (error?.response?.status === 403) {
 				proModal.onOpen();
+			} else {
+				toast.error("Someting went wrong.");
 			}
 			console.log(error);
 		} finally {

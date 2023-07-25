@@ -2,7 +2,7 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-21 11:38:27
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-07-23 22:18:03
+ * @LastEditTime: 2023-07-25 11:18:14
  * @FilePath: \ai-saas\components\Sidebar.tsx
  * @Description:
  */
@@ -71,8 +71,9 @@ const routes = [
 
 interface SidebarProps {
 	apiLimitCount: number;
+	isPro: boolean;
 }
-const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
+const Sidebar = ({ apiLimitCount = 0, isPro = false }: SidebarProps) => {
 	const pathname = usePathname();
 
 	return (
@@ -106,7 +107,7 @@ const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
 					))}
 				</div>
 			</div>
-			<FreeCounter apiLimitCount={apiLimitCount} />
+			<FreeCounter apiLimitCount={apiLimitCount} isPro={isPro} />
 		</div>
 	);
 };

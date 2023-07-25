@@ -2,7 +2,7 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-21 19:51:00
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-07-23 15:56:51
+ * @LastEditTime: 2023-07-25 10:57:55
  * @FilePath: \ai-saas\app\(dashboard)\(routes)\video\page.tsx
  * @Description:
  */
@@ -23,6 +23,7 @@ import { Empty } from "@/components/Empty";
 import { Loader } from "@/components/Loader";
 import { cn } from "@/lib/utils";
 import { useProModal } from "@/hooks/use-pro-modal";
+import toast from "react-hot-toast";
 
 const VideoPage = () => {
 	const router = useRouter();
@@ -48,8 +49,9 @@ const VideoPage = () => {
 			// todo: open pro modal
 			if (error?.response?.status === 403) {
 				proModal.onOpen();
+			} else {
+				toast.error("Someting went wrong.");
 			}
-			console.log(error);
 		} finally {
 			router.refresh();
 		}

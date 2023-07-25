@@ -2,7 +2,7 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-21 11:04:11
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-07-21 11:10:47
+ * @LastEditTime: 2023-07-24 14:27:16
  * @FilePath: \ai-saas\middleware.ts
  * @Description:
  */
@@ -12,7 +12,7 @@ import { authMiddleware } from "@clerk/nextjs";
 // Please edit this to allow other routes to be public as needed.
 // See https://clerk.com/docs/nextjs/middleware for more information about configuring your middleware
 export default authMiddleware({
-	publicRoutes: ["/"],
+	publicRoutes: ["/", "/api/webhook"],
 });
 
 export const config = {

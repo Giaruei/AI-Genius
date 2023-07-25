@@ -2,7 +2,7 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-23 23:11:05
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-07-23 23:20:48
+ * @LastEditTime: 2023-07-25 11:20:05
  * @FilePath: \ai-saas\components\ui\badge.tsx
  * @Description:
  */
@@ -23,7 +23,8 @@ const badgeVariants = cva(
 				destructive:
 					"border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
 				outline: "text-foreground",
-				premium: "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-primary-foreground border-0",
+				premium:
+					"bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-primary-foreground border-0",
 			},
 		},
 		defaultVariants: {

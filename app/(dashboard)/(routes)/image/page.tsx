@@ -2,7 +2,7 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-21 19:51:00
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-07-23 11:33:26
+ * @LastEditTime: 2023-07-25 10:56:49
  * @FilePath: \ai-saas\app\(dashboard)\(routes)\image\page.tsx
  * @Description:
  */
@@ -32,6 +32,7 @@ import {
 } from "@/components/ui/select";
 import { Card, CardFooter } from "@/components/ui/card";
 import { useProModal } from "@/hooks/use-pro-modal";
+import toast from "react-hot-toast";
 
 const ImagePage = () => {
 	const router = useRouter();
@@ -61,8 +62,9 @@ const ImagePage = () => {
 			// todo: open pro modal
 			if (error?.response?.status === 403) {
 				proModal.onOpen();
+			} else {
+				toast.error("Someting went wrong.");
 			}
-			console.log(error);
 		} finally {
 			router.refresh();
 		}
