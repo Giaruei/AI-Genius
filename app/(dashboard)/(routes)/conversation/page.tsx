@@ -2,7 +2,7 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-21 19:51:00
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-07-27 13:38:25
+ * @LastEditTime: 2023-08-11 20:11:36
  * @FilePath: \ai-saas\app\(dashboard)\(routes)\conversation\page.tsx
  * @Description:
  */
@@ -121,7 +121,7 @@ const ConversationPage = () => {
 								className={cn(
 									"p-8 w-full flex items-start gap-x-8 rounded-lg",
 									message.role === "user"
-										? "border border-black/10"
+										? "border border-black/10 bg-purple-300"
 										: "bg-muted"
 								)}
 							>
