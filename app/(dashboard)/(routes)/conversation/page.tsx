@@ -24,7 +24,7 @@ import { Empty } from "@/components/Empty";
 import { Loader } from "@/components/Loader";
 import { cn } from "@/lib/utils";
 import { UserAvater } from "@/components/UserAvater";
-import { BotAvater } from "@/components/Bot-avater";
+import { BotAvater } from "@/components/BotAvater";
 import { useProModal } from "@/hooks/use-pro-modal";
 import { toast } from "react-hot-toast";
 

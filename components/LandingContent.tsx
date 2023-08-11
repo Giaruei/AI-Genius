@@ -2,7 +2,7 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-25 11:52:42
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-07-25 12:07:15
+ * @LastEditTime: 2023-08-11 19:47:47
  * @FilePath: \ai-saas\components\LandingContent.tsx
  * @Description:
  */
@@ -13,27 +13,23 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 const testimonials = [
 	{
 		name: "Antoio",
-		avatar: "A",
 		title: "Software Engineer",
 		description: "This is the best application I've used!",
 	},
 	{
-		name: "Antoio",
-		avatar: "A",
-		title: "Software Engineer",
-		description: "This is the best application I've used!",
+		name: "Ding Zhen",
+		title: "Winner",
+		description: "这是雪豹。",
 	},
 	{
-		name: "Antoio",
-		avatar: "A",
-		title: "Software Engineer",
-		description: "This is the best application I've used!",
+		name: "Tim Cook",
+		title: "Apple Boss",
+		description: "The next generation for IPhone.",
 	},
 	{
-		name: "Antoio",
-		avatar: "A",
-		title: "Software Engineer",
-		description: "This is the best application I've used!",
+		name: "askjfha#@rerfw",
+		title: "India Youtuber",
+		description: "qwg@!#$!@eqwfQFas",
 	},
 ];
 export const LandingContent = () => {
