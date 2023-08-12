@@ -2,7 +2,7 @@
  * @Author: 前端天才蔡嘉睿
  * @Date: 2023-07-21 09:54:39
  * @LastEditors: Giaruei 247658354@qq.com
- * @LastEditTime: 2023-08-12 15:29:39
+ * @LastEditTime: 2023-08-12 15:33:28
  * @FilePath: \ai-saas\README.md
  * @Description:
 -->
@@ -55,3 +55,7 @@ npx prisma db push
 ```shell
 npm run dev
 ```
+
+### 部署项目
+
+通过 Vercel 一键部署
